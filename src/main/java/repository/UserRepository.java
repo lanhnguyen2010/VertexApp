@@ -8,7 +8,7 @@ import io.vertx.ext.asyncsql.AsyncSQLClient;
 import java.io.IOException;
 
 /**
- * Created by lanhnguyen on 08/03/2016.
+ * author: lanhnguyen on 08/03/2016.
  */
 public class UserRepository extends PostgreSQLMapper<User> {
 

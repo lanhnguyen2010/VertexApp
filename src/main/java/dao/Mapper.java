@@ -7,9 +7,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import java.util.List;
 
-/**
- * Created by lanhnguyen on 07/03/2016.
- */
+
 public abstract class Mapper <R extends Entity,Q> {
 
     protected abstract R newRecord(final JsonObject json);

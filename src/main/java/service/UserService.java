@@ -6,11 +6,13 @@ import io.vertx.ext.web.RoutingContext;
 import repository.UserRepository;
 
 /**
- * Created by lanhnguyen on 07/03/2016.
+ * @author lanhnguyen on 07/03/2016.
  */
 public class UserService {
 
     private static final String USER_TABLE = "users";
+    public static final String CONTENT_TYPE = "content-type";
+    public static final String JSON_CONTENT_TYPE = "application/json; charset=utf-8";
 
     private UserRepository userRepository;
 
@@ -22,7 +24,7 @@ public class UserService {
         userRepository.findAll(callback -> {
             if (callback.succeeded()){
                 routingContext.response().setStatusCode(200)
-                        .putHeader("content-type", "application/json; charset=utf-8")
+                        .putHeader(CONTENT_TYPE, JSON_CONTENT_TYPE)
                         .end(Json.encodePrettily(callback.result()));
 
             }else {
@@ -38,7 +40,7 @@ public class UserService {
             userRepository.findById(Integer.parseInt(id), callback -> {
                 if (callback.succeeded()) {
                     routingContext.response().setStatusCode(200)
-                            .putHeader("content-type", "application/json; charset=utf-8")
+                            .putHeader(CONTENT_TYPE, JSON_CONTENT_TYPE)
                             .end(Json.encodePrettily(callback.result()));
 
                 } else {

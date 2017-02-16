@@ -1,23 +1,20 @@
 package dao;
 
 import domain.Entity;
-import domain.User;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.asyncsql.AsyncSQLClient;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lanhnguyen on 08/03/2016.
- */
 public class PostgreSQLMapper<R extends Entity> extends Mapper<R, String> {
 
-    public static final String SELECT_FROM = "SELECT * FROM ";
+    private static final String SELECT_FROM = "SELECT * FROM ";
     private AsyncSQLClient client;
     private String table;
 
@@ -37,13 +34,11 @@ public class PostgreSQLMapper<R extends Entity> extends Mapper<R, String> {
         client.getConnection(checkConn -> {
             if (checkConn.failed()) {
                 callback.handle(Future.failedFuture(checkConn.cause()));
-                return;
                 
             } else {
                 checkConn.result().query(SELECT_FROM + table + " " + queryWhere, res -> {
                     if (res.failed()) {
                         callback.handle(Future.failedFuture(res.cause()));
-                        return;
                     } else {
                         List<R> result = new ArrayList<>();
 
@@ -92,14 +87,12 @@ public class PostgreSQLMapper<R extends Entity> extends Mapper<R, String> {
         client.getConnection(checkConn -> {
             if (checkConn.failed()) {
                 callback.handle(Future.failedFuture(checkConn.cause()));
-                return;
             } else {
                 checkConn.result().queryWithParams(SELECT_FROM + table + " where id = ?",
                         new JsonArray().add(id), res -> {
                     if (res.failed() || res.result().getRows().size() <= 0) {
                         System.out.println("fail");
                         callback.handle(Future.failedFuture(res.cause()));
-                        return;
                     } else {
                         R result = newRecord(res.result().getRows().get(0));
 

@@ -1,7 +1,7 @@
 package domain;
 
 /**
- * Created by lanhnguyen on 04/03/2016.
+ * @author lanhnguyen on 04/03/2016.
  */
 public class User extends Entity {
 

@@ -8,7 +8,7 @@ import service.UserService;
 import util.ConfigFactory;
 
 /**
- * Created by lanhnguyen on 01/03/2016.
+ * @author lanhnguyen on 01/03/2016.
  */
 public class MyFirstVerticle extends AbstractVerticle {
     @Override
@@ -24,7 +24,7 @@ public class MyFirstVerticle extends AbstractVerticle {
         router.get("/api/users").handler(userService::getUsers);
         router.get("/api/users/:id").handler(userService::getById);
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(router::accept).listen(8000);
     }
 
 }

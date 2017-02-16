@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 
 /**
- * Created by lanhnguyen on 08/03/2016.
+ * @author  lanhnguyen on 08/03/2016.
  */
 public abstract class Entity implements Serializable {
     private static final long serialVersionUID = 1L;
